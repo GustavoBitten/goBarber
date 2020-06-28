@@ -30,6 +30,7 @@ class AppointmentsRepository {
         date,
         provider
     }: CreateAppointmentDTO): Appointment {
+        
         const appointment = new Appointment({provider, date})
 
         this.appointments.push(appointment)

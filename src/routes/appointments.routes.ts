@@ -1,14 +1,9 @@
 import {
-    Router,
-    request,
-    response
+    Router
 } from 'express'
 import {
-    startOfHour,
     parseISO,
-    isEqual
 } from 'date-fns'
-import Appointment from '../models/Appointment'
 import AppointmentsRepository from '../repositories/AppointmentsRepository'
 import CreateAppointmentService from '../services/CreateAppointmentService'
 
