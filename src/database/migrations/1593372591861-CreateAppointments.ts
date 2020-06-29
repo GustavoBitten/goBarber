@@ -9,7 +9,7 @@ export default class CreateAppointments1593372591861 implements MigrationInterfa
                 columns:[
                     {
                         name: 'id',
-                        type:'varchar',
+                        type:'uuid',
                         isPrimary: true,
                         generationStrategy: 'uuid' ,
                         default: 'uuid_generate_v4()'
@@ -18,12 +18,10 @@ export default class CreateAppointments1593372591861 implements MigrationInterfa
                     {
                         name: 'provider',
                         type:'varchar',
-                        isNullable: false,
                     },
                     {
                         name: 'date',
                         type:'timestamp with time zone',
-                        isNullable: false,
                     },
                     {
                         name: 'created_at',
