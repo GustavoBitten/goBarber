@@ -19,7 +19,7 @@ class User {
     @CreateDateColumn()
     created_at: Date
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updade_at: Date
 
 
