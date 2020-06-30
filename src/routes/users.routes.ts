@@ -16,6 +16,8 @@ usersRoutes.post('/', async (request, response) => {
 
         const user = await createUser.execute({email,name,password})
 
+        delete user.password
+
         return response.json(user)
 
     } catch (error) {

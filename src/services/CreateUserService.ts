@@ -1,5 +1,6 @@
 import { getRepository } from "typeorm";
 import User from "../models/User";
+import { hash } from "bcryptjs";
 
 interface RequestDTO{
     name: string
@@ -19,10 +20,12 @@ class CreateUserService{
             throw new Error('Email address already used')
         }
 
+        const hashPasswd = await hash(password,8)
+
         const user = usersRepository.create({
             email,
             name,
-            password
+            password: hashPasswd,
         })
 
         await usersRepository.save(user)
