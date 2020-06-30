@@ -20,9 +20,9 @@ class User {
     created_at: Date
 
     @UpdateDateColumn()
-    updade_at: Date
+    updated_at: Date
 
 
 }
 
-export default User
+export default User;

@@ -32,7 +32,7 @@ class Appointment {
     created_at: Date
 
     @UpdateDateColumn()
-    updade_at: Date
+    updated_at: Date
 
 }
 
