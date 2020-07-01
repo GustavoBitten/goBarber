@@ -41,7 +41,6 @@ appointmentsRouter.post('/', async (request, response) => {
             date: parseDate,
             provider_id
         })
-
         return response.json(appointment)
 
     } catch (error) {
