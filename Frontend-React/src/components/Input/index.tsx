@@ -29,7 +29,6 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
-
   }, []);
 
   useEffect(() => {
