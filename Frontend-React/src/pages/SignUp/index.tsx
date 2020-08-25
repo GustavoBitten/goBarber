@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 
-import { FiLogIn, FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi';
+import { FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import logoImg from '../../assets/logo.svg';
