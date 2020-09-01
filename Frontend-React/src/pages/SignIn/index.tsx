@@ -21,7 +21,7 @@ interface SingInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { singIn } = useAuth();
+  const { signIn: singIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SingInFormData) => {
