@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, Background } from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 interface SingInFormData {
   email: string;
@@ -21,9 +21,7 @@ interface SingInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { singIn, user } = useContext(AuthContext);
-
-  console.log(user);
+  const { singIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SingInFormData) => {
