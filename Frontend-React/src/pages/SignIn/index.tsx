@@ -11,7 +11,8 @@ import Button from '../../components/Button';
 
 import { Container, Content, Background } from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 interface SingInFormData {
   email: string;
@@ -22,6 +23,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn: singIn } = useAuth();
+  const { addToast, removeToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: SingInFormData) => {
@@ -38,7 +40,7 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        singIn({
+        await singIn({
           email: data.email,
           password: data.password,
         });
@@ -49,10 +51,10 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
 
-        // ttost
+        addToast();
       }
     },
-    [singIn],
+    [singIn, addToast],
   );
 
   return (
