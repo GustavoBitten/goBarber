@@ -7,10 +7,10 @@ import {
 import {
     parseISO,
 } from 'date-fns'
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated'
+import AppointmentsRepository from '@modules/appointments/repositories/AppointmentsRepository'
+import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService'
 
-import AppointmentsRepository from '../../modules/appointments/repositories/AppointmentsRepository'
-import CreateAppointmentService from '../../modules/appointments/services/CreateAppointmentService'
-import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 
 const appointmentsRouter = Router()
 

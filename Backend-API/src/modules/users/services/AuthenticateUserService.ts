@@ -1,9 +1,9 @@
 import { getRepository } from "typeorm";
-import User from "../entities/User";
+import User from "../infra/typeorm/entities/User";
 import { hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import authConfig from "../../../config/authConfig";
-import AppError from "../../../errors/AppError";
+import AppError from "@shared/errors/AppError";
+import authConfig from "@config/authConfig";
 
 
 interface RequestDTO {

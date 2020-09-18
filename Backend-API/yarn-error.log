@@ -1,29 +1,29 @@
 Arguments: 
-  /home/maleguga/.nvm/versions/node/v12.18.1/bin/node /home/maleguga/.nvm/versions/node/v12.18.1/bin/yarn add express-async-erros
+  /home/maleguga/.nvm/versions/node/v12.18.3/bin/node /home/maleguga/.yarn/bin/yarn.js add tsconfig-path -D
 
 PATH: 
-  /home/maleguga/.nvm/versions/node/v12.18.1/bin:/home/maleguga/.zinit/polaris/sbin:/home/maleguga/.zinit/polaris/bin:/home/maleguga/.zinit/polaris/usr/sbin:/home/maleguga/.zinit/polaris/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+  /home/maleguga/.yarn/bin:/home/maleguga/.config/yarn/global/node_modules/.bin:/home/maleguga/.yarn/bin:/home/maleguga/.config/yarn/global/node_modules/.bin:/home/maleguga/anaconda3/bin:/home/maleguga/anaconda3/condabin:/home/maleguga/.nvm/versions/node/v12.18.3/bin:/home/maleguga/.zinit/polaris/sbin:/home/maleguga/.zinit/polaris/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/maleguga/Android/Sdk/emulator:/home/maleguga/Android/Sdk/tools:/home/maleguga/Android/Sdk/tools/bin:/home/maleguga/Android/Sdk/platform-tools:/home/maleguga/android-studio/bin:/home/maleguga/Android/Sdk/emulator:/home/maleguga/Android/Sdk/tools:/home/maleguga/Android/Sdk/tools/bin:/home/maleguga/Android/Sdk/platform-tools:/home/maleguga/android-studio/bin
 
 Yarn version: 
-  1.22.4
+  1.22.5
 
 Node version: 
-  12.18.1
+  12.18.3
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/express-async-erros: Not found
-      at Request.params.callback [as _callback] (/home/maleguga/.nvm/versions/node/v12.18.1/lib/node_modules/yarn/lib/cli.js:66987:18)
-      at Request.self.callback (/home/maleguga/.nvm/versions/node/v12.18.1/lib/node_modules/yarn/lib/cli.js:140748:22)
+  Error: https://registry.yarnpkg.com/tsconfig-path: Not found
+      at Request.params.callback [as _callback] (/home/maleguga/.yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/home/maleguga/.yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:315:20)
-      at Request.<anonymous> (/home/maleguga/.nvm/versions/node/v12.18.1/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.<anonymous> (/home/maleguga/.yarn/lib/cli.js:141721:10)
       at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (/home/maleguga/.nvm/versions/node/v12.18.1/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at IncomingMessage.<anonymous> (/home/maleguga/.yarn/lib/cli.js:141643:12)
       at Object.onceWrapper (events.js:421:28)
       at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1221:12)
+      at endReadableNT (_stream_readable.js:1220:12)
       at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
@@ -34,17 +34,20 @@ npm manifest:
     "repository": "https://github.com/GustavoBitten/goBarber-api.git",
     "scripts": {
       "build": "tsc",
-      "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
-      "start": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
+      "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts & docker start postgres-barbe",
+      "start": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
     },
     "author": "GustavoBitten <gustavoduarte1999@hotmail.com>",
     "license": "MIT",
     "dependencies": {
+      "@types/cors": "^2.8.7",
       "bcryptjs": "^2.4.3",
+      "cors": "^2.8.5",
       "crypto": "^1.0.1",
       "date-fns": "^2.14.0",
       "express": "^4.17.1",
+      "express-async-errors": "^3.1.1",
       "jsonwebtoken": "^8.5.1",
       "multer": "^1.4.2",
       "pg": "^8.2.1",
@@ -94,6 +97,13 @@ Lockfile:
     integrity sha512-2+FrkXY4zllzTNfJth7jOqEHC+enpLeGslEhpnTAkg21GkRrWV4SsAtqchtT4YS9/nODBU2/ZfsBY2X4J/dX7A==
     dependencies:
       "@types/node" "*"
+  
+  "@types/cors@^2.8.7":
+    version "2.8.7"
+    resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.7.tgz#ab2f47f1cba93bce27dfd3639b006cc0e5600889"
+    integrity sha512-sOdDRU3oRS7LBNTIqwDkPJyq0lpHYcbMTt0TrjzsXbk/e37hcLTH6eZX7CdbDeN0yJJvzw9hFBZkbtCSbk/jAQ==
+    dependencies:
+      "@types/express" "*"
   
   "@types/express-serve-static-core@*":
     version "4.17.7"
@@ -498,6 +508,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
     integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
   
+  cors@^2.8.5:
+    version "2.8.5"
+    resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+    integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+    dependencies:
+      object-assign "^4"
+      vary "^1"
+  
   crypto@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/crypto/-/crypto-1.0.1.tgz#2af1b7cad8175d24c8a1b0778255794a21803037"
@@ -630,6 +648,11 @@ Lockfile:
     version "1.8.1"
     resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
     integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  
+  express-async-errors@^3.1.1:
+    version "3.1.1"
+    resolved "https://registry.yarnpkg.com/express-async-errors/-/express-async-errors-3.1.1.tgz#6053236d61d21ddef4892d6bd1d736889fc9da41"
+    integrity sha512-h6aK1da4tpqWSbyCa3FxB/V6Ehd4EEB15zyQq9qe75OZBp0krinNKuH4rAY+S/U/2I36vdLAUFSjQJ+TFmODng==
   
   express@^4.17.1:
     version "4.17.1"
@@ -1195,7 +1218,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
     integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
   
-  object-assign@^4.0.1, object-assign@^4.1.1:
+  object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
     integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -1936,7 +1959,7 @@ Lockfile:
       spdx-correct "^3.0.0"
       spdx-expression-parse "^3.0.0"
   
-  vary@~1.1.2:
+  vary@^1, vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
     integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
