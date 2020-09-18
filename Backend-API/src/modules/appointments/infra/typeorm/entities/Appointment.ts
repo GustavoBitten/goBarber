@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
+  ManyToOne,
     JoinColumn,
 
 } from 'typeorm'
