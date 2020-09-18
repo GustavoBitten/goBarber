@@ -1,10 +1,10 @@
 import 'reflect-metadata'
 import express, { json, Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
-import routes from './routes'
+import routes from './shared/routes'
 import cors from "cors";
 
-import './database'
+import './shared/database'
 import uploadConfig from './config/upload'
 import AppError from './errors/AppError'
 
