@@ -1,52 +1,51 @@
-import { getRepository } from "typeorm";
-import User from "../infra/typeorm/entities/User";
-import { hash, compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
-import AppError from "@shared/errors/AppError";
-import authConfig from "@config/authConfig";
+import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import AppError from '@shared/errors/AppError';
+import authConfig from '@config/authConfig';
+import User from '../infra/typeorm/entities/User';
+import IUsersRepository from '../repositories/IUsersRepository';
 
-
-interface RequestDTO {
-    email: string
-    password: string
+interface IRequestDTO {
+  email: string;
+  password: string;
 }
 
-interface ResponseDTO{
-    user:User
-    token: string
+interface IResponseDTO {
+  user: User;
+  token: string;
 }
 
-class AuthenticateUserService{
-    public async execute({email,password}: RequestDTO): Promise<ResponseDTO>{
+class AuthenticateUserService {
+  constructor(private usersRepository: IUsersRepository) {}
 
-        const usersRepositoty = getRepository(User)
+  public async execute({
+    email,
+    password,
+  }: IRequestDTO): Promise<IResponseDTO> {
+    const user = await this.usersRepository.findByEmail(email);
 
-        const user = await usersRepositoty.findOne({where:{email}})
-
-        if(!user){
-            throw new AppError("Incorrect email/password combination",401);
-        }
-
-        const passwMatched = await compare(password,user.password)
-
-        if (!passwMatched) {
-            throw new AppError("Incorrect email/password combination",401);
-        }
-
-        const {expiresIn,secret} = authConfig.jwt
-
-        const token = sign({},secret,{
-            subject: user.id,
-            expiresIn: expiresIn
-        })
-
-        return {
-            user,
-            token
-        }
+    if (!user) {
+      throw new AppError('Incorrect email/password combination', 401);
     }
 
+    const passwMatched = await compare(password, user.password);
+
+    if (!passwMatched) {
+      throw new AppError('Incorrect email/password combination', 401);
+    }
+
+    const { expiresIn, secret } = authConfig.jwt;
+
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn,
+    });
+
+    return {
+      user,
+      token,
+    };
+  }
 }
 
-
-export default AuthenticateUserService
+export default AuthenticateUserService;
