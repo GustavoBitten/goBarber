@@ -1,34 +1,34 @@
-import 'reflect-metadata'
-import express, { json, Request, Response, NextFunction } from 'express'
-import 'express-async-errors'
-import routes from './routes'
-import cors from "cors";
+import 'reflect-metadata';
+import express, { json, Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
+import cors from 'cors';
 
-import '@shared/infra/typeorm/index'
+import '@shared/infra/typeorm/index';
+import '@shared/container';
 import AppError from '@shared/errors/AppError';
 import uploadConfig from '@config/upload';
+import routes from './routes';
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(json())
-app.use('/files', express.static(uploadConfig.directory))
-app.use(routes)
-app.use((err: Error, request: Request, response: Response, _: NextFunction) =>{
-  if(err instanceof AppError){
-    return response.status( err.statusCode).json({
+app.use(cors());
+app.use(json());
+app.use('/files', express.static(uploadConfig.directory));
+app.use(routes);
+app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
       status: 'error',
-      message: err.message
-    })
+      message: err.message,
+    });
   }
 
-  console.error(err)
+  console.error(err);
 
   return response.status(500).json({
     status: 'error',
-    message: 'Internal server error'
-  })
-})
+    message: 'Internal server error',
+  });
+});
 
-
-app.listen(3333,()=>console.log('Server online on port 3333'))
+app.listen(3333, () => console.log('Server online on port 3333'));

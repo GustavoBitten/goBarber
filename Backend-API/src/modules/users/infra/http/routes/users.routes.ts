@@ -4,6 +4,7 @@ import uploadConfig from '@config/upload';
 
 import CreateUserService from '@modules/users/services/CreateUserService';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
+import { container } from 'tsyringe';
 import UsersRepository from '../../typeorm/repositories/UsersRepository';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
@@ -12,10 +13,9 @@ const usersRoutes = Router();
 const upload = multer(uploadConfig);
 
 usersRoutes.post('/', async (request, response) => {
-  const usersRepository = new UsersRepository();
   const { name, email, password } = request.body;
 
-  const createUser = new CreateUserService(usersRepository);
+  const createUser = container.resolve(CreateUserService);
 
   const user = await createUser.execute({ email, name, password });
 
