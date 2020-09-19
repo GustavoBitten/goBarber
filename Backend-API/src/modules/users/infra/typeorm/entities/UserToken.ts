@@ -17,7 +17,7 @@ class UserToken {
   token: string;
 
   @Column()
-  user_is: string;
+  user_id: string;
 
   @CreateDateColumn()
   created_at: Date;
