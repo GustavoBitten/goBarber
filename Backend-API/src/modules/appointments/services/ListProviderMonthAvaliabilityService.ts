@@ -45,15 +45,11 @@ class ListProviderMonthAvaliabilityService {
         return getDate(appointment.date) === day;
       });
 
-      console.log(appointmentsInDay);
-
       return {
         day,
         available: appointmentsInDay.length < 10,
       };
     });
-
-    console.log(availability);
 
     return availability;
   }
