@@ -4,7 +4,7 @@ import usersRoutes from '@modules/users/infra/http/routes/users.routes';
 import sessionsRoutes from '@modules/users/infra/http/routes/sessions.routes';
 import passwordRoutes from '@modules/users/infra/http/routes/password.routes';
 import profileRoutes from '@modules/users/infra/http/routes/profile.routes';
-import providersRouter from '@modules/appointments/infra/http/routes/provides.routes';
+import providersRouter from '@modules/appointments/infra/http/routes/providers.routes';
 
 const routes = Router();
 
