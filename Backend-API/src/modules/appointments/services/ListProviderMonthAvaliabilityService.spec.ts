@@ -16,6 +16,7 @@ describe('ListProviderMonthAvaliabilityService', () => {
     async function testWholeDayByHour(hour: number): Promise<void> {
       await fakeAppointmentsRepository.create({
         provider_id: 'user',
+        user_id: 'user',
         date: new Date(2020, 4, 20, hour, 0, 0),
       });
     }
@@ -32,6 +33,7 @@ describe('ListProviderMonthAvaliabilityService', () => {
 
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
+      user_id: 'user',
       date: new Date(2020, 4, 21, 8, 0, 0),
     });
 
