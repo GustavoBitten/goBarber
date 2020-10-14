@@ -4,11 +4,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ObjectIdColumn,
+  ObjectID,
 } from 'typeorm';
 
 @Entity('notifications')
 class Notification {
-  @ObjectIdColumn('uuid')
+  @ObjectIdColumn()
   id: string;
 
   @Column()
